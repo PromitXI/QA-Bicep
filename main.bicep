@@ -5,31 +5,31 @@ param location string ='westus3'
 @description('The Name of the Envoirnment of Resource')
 param envoirnment string='QA'
 
-@secure()
-@description('The administrator login username for the SQL server.')
-param sqlServerAdministratorLogin string
 
-@secure()
+@description('The administrator login username for the SQL server.')
+param sqlServerAdministratorLogin string='sqladminpromit'
+
+
 @description('The administrator login password for the SQL server.')
-param sqlServerAdministratorLoginPassword string
+param sqlServerAdministratorLoginPassword string='HogwardsPasswrdw1234'
 
 resource vnet 'Microsoft.Network/virtualNetworks@2022-07-01' existing={
-  name:'DemoVnet'
+  name:'Vnet-PWB-QA-Datajobs'
   // scope:resourceGroup('existing-RG')
 
 }
-output VnetId string='a596ecea-37e1-495d-a019-37e55ab48875'
+output VnetId string='a1d910e1-3829-4056-9d83-5fe627b32026'
 
 resource subnet1 'Microsoft.Network/virtualNetworks/subnets@2022-07-01' existing={
   parent:vnet
-  name:'Subnet1'
+  name:'Snet-SQL1-Data'
     
 }
 output SubnetID string= subnet1.id
 
 resource subnet2 'Microsoft.Network/virtualNetworks/subnets@2022-07-01' existing={
   parent:vnet
-  name:'Subnet2'
+  name:'Snet-Mgmt-Data'
     
 }
 output Subnet2ID string= subnet2.id
@@ -39,7 +39,7 @@ module SQLDatabase 'SQLServer.bicep'={
   
   params:{
     location: location
-    VnetId:<vnet.id>
+    VnetId:vnet.id
     envoirnment: envoirnment
     sqlServerAdministratorLogin: sqlServerAdministratorLogin
     sqlServerAdministratorLoginPassword: sqlServerAdministratorLoginPassword
