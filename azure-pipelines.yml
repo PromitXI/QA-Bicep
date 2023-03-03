@@ -1,0 +1,26 @@
+trigger:
+- master
+
+name: Deploy Bicep files
+
+variables:
+  vmImageName: 'ubuntu-latest'
+
+  azureServiceConnection: 'Promitconn'
+  resourceGroupName: 'RG-PWB-QA-DataJobs'
+  location: 'East US'
+  templateFile: 'main.bicep'
+pool:
+  vmImage: $(vmImageName)
+
+steps:
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: $(azureServiceConnection)
+    scriptType: bash
+    scriptLocation: inlineScript
+    useGlobalConfig: false
+    inlineScript: |
+      az --version
+      
+      az deployment group create --resource-group $(resourceGroupName) --template-file $(templateFile)
