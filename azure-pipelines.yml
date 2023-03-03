@@ -21,4 +21,4 @@ steps:
     inlineScript: |
       az --version
       
-      az deployment group create --resource-group $(resourceGroupName) --template-file $(templateFile) --parameters sqlServerAdministratorLogin=$(sqlServerAdministratorLogin) sqlServerAdministratorLoginPassword=$(sqlServerAdministratorLoginPassword)
+      az deployment group create --resource-group $(resourceGroupName) --template-file $(templateFile)
