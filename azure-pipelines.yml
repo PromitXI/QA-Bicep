@@ -10,8 +10,6 @@ variables:
   resourceGroupName: 'RG-PWB-QA-DataJobs'
   location: 'East US'
   templateFile: 'main.bicep'
-pool:
-  vmImage: $(vmImageName)
 
 steps:
 - task: AzureCLI@2
@@ -23,4 +21,4 @@ steps:
     inlineScript: |
       az --version
       
-      az deployment group create --resource-group $(resourceGroupName) --template-file $(templateFile)
+      az deployment group create --resource-group $(resourceGroupName) --template-file $(templateFile) --parameters sqlServerAdministratorLogin=$(sqlServerAdministratorLogin) sqlServerAdministratorLoginPassword=$(sqlServerAdministratorLoginPassword)
