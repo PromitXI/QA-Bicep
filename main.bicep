@@ -7,15 +7,15 @@ param envoirnment string='QA'
 
 
 @description('The administrator login username for the SQL server.')
-param sqlServerAdministratorLogin string='sqladminpromit'
+param sqlServerAdministratorLogin string
 
 
 @description('The administrator login password for the SQL server.')
-param sqlServerAdministratorLoginPassword string='HogwardsPasswrdw1234'
+param sqlServerAdministratorLoginPassword string
 
 resource vnet 'Microsoft.Network/virtualNetworks@2022-07-01' existing={
   name:'Vnet-PWB-QA-Datajobs'
-  // scope:resourceGroup('existing-RG')
+  
 
 }
 output VnetId string='a1d910e1-3829-4056-9d83-5fe627b32026'
