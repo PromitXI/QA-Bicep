@@ -16,28 +16,23 @@ param sqlDatabaseSku object = {
 }
 
 @description('The name of the environment. This must be Development/Quality/Production.')
-@allowed([
-  'Dev'
-  'QA'
-  'Prod'
-])
 param envoirnment string
 
 
 
 @description('The name of the Subnet')
-param subnetID string
+param subnetID string='subnetID'
 
 @description('The Object ID of Vnet')
-param VnetId string
+param VnetId string='VnetId'
 
 
 
 
 
 //Variables for SQl SERVEr & Storage Accounts
-var sqlServerName = take('pwb${envoirnment}${location}${uniqueString(resourceGroup().id)}',14)
-var sqlDatabaseName = 'dm_edm_${envoirnment}'
+var sqlServerName = 'dm-edm-${location}-${envoirnment}'
+var sqlDatabaseName = 'sql_edm_${location}_${envoirnment}'
 
 
 

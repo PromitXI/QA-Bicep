@@ -1,9 +1,4 @@
 @description('The Name of the Envoirnment of Resource')
-@allowed( [
-  'Dev'
-  'QA'
-  'Prod'
-])
 param envoirnment string
 
 @description('The Location of The Resource Group and All Other Resources')
@@ -20,7 +15,7 @@ param VnetId string
 
 
 var synapsename=toLower('syn-edm-${envoirnment}-${location}')
-var datalakename =toLower(take('pwb${envoirnment}data${uniqueString(resourceGroup().id)}',12))
+var datalakename =toLower('pwbedm${envoirnment}001')
 var blobname =toLower('filesys${envoirnment}')
 
 
