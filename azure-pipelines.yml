@@ -5,11 +5,9 @@ name: Deploy Bicep files
 
 variables:
   vmImageName: 'ubuntu-latest'
+  
 
-  azureServiceConnection: 'QAIASDeploy'
-  resourceGroupName: 'RG-PWB-LZ-Hybrid-DataPlatform-Net-QA-001'
-  location: 'West US 3'
-  templateFile: 'main.bicep'
+
 
 steps:
 - task: AzureCLI@2
