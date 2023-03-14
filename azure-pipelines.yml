@@ -1,22 +1,19 @@
 trigger:
-- master
+  - master
 
 name: Deploy Bicep files
 
 variables:
-  vmImageName: 'ubuntu-latest'
-  
-
-
+  - group: Bicep Deployment Variables
 
 steps:
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: $(azureServiceConnection)
-    scriptType: bash
-    scriptLocation: inlineScript
-    useGlobalConfig: false
-    inlineScript: |
-      az --version
-      
-      az deployment group create --resource-group $(resourceGroupName) --template-file $(templateFile) --parameters sqlServerAdministratorLogin=$(sqlServerAdministratorLogin) sqlServerAdministratorLoginPassword=$(sqlServerAdministratorLoginPassword)
+  - task: AzureCLI@2
+    inputs:
+      azureSubscription: $(azureServiceConnection)
+      scriptType: bash
+      scriptLocation: inlineScript
+      useGlobalConfig: false
+      inlineScript: |
+        az --version
+
+        az deployment group create --resource-group $(resourceGroupName) --template-file $(templateFile) --parameters sqlServerAdministratorLogin=$(sqlServerAdministratorLogin) sqlServerAdministratorLoginPassword=$(sqlServerAdministratorLoginPassword)
